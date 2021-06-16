@@ -12,12 +12,12 @@ class Search extends Component {
   // When the component mounts, get a list of all available base books and update this.state.books
   componentDidMount(query) {
     API.getBooks(query)
-    .then((res) =>
-      this.setState({
-        books: res.data.items.map((bookData) => this.createBook(bookData)),
-      })
-    )
-    .catch((err) => console.error(err));
+      .then((res) =>
+        this.setState({
+          books: res.data.items.map((bookData) => this.createBook(bookData)),
+        })
+      )
+      .catch((err) => console.error(err));
   }
 
   createBook = (bookData) => {
@@ -31,27 +31,25 @@ class Search extends Component {
     };
   };
 
-  
-
   handleInputChange = (event) => {
     const name = event.target.name;
-        const value = event.target.value;
-        this.setState({
-            [name]: value
-        });
+    const value = event.target.value;
+    this.setState({
+      [name]: value,
+    });
   };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
     API.getBooks(this.state.search)
-    .then((res) =>
-      this.setState({
-        books: res.data.items.map((bookData) => this.createBook(bookData)),
-      })
-    )
-    .catch((err) => console.error(err));
+      .then((res) =>
+        this.setState({
+          books: res.data.items.map((bookData) => this.createBook(bookData)),
+        })
+      )
+      .catch((err) => console.error(err));
   };
-  
+
   render() {
     return (
       <div>
