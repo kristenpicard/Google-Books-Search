@@ -8,15 +8,13 @@ import SearchResults from "../components/SearchResults";
 class Search extends Component {
   state = {
     search: "",
-    breeds: [],
-    results: [],
-    error: ""
+    books: [],
   };
 
-  // When the component mounts, get a list of all available base breeds and update this.state.breeds
+  // When the component mounts, get a list of all available base books and update this.state.books
   componentDidMount() {
-    API.getBaseBreedsList()
-      .then(res => this.setState({ breeds: res.data.message }))
+    API.getBooks()
+      .then(res => this.setState({ books: res.data.message }))
       .catch(err => console.log(err));
   }
 
@@ -26,7 +24,7 @@ class Search extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    API.getDogsOfBreed(this.state.search)
+    API.getBooks(this.state.search)
       .then(res => {
         if (res.data.status === "error") {
           throw new Error(res.data.message);
@@ -38,21 +36,16 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <Container style={{ minHeight: "80%" }}>
-          <h1 className="text-center">Search By Breed!</h1>
-          <Alert
-            type="danger"
-            style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}
-          >
-            {this.state.error}
-          </Alert>
+        
+          <h1 className="text-center">Search Books!</h1>
+          
           <SearchForm
             handleFormSubmit={this.handleFormSubmit}
             handleInputChange={this.handleInputChange}
-            breeds={this.state.breeds}
+            books={this.state.books}
           />
           <SearchResults results={this.state.results} />
-        </Container>
+      
       </div>
     );
   }
