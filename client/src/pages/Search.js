@@ -34,20 +34,24 @@ class Search extends Component {
   
 
   handleInputChange = (event) => {
-    this.setState({ search: event.target.value });
+    const name = event.target.name;
+        const value = event.target.value;
+        this.setState({
+            [name]: value
+        });
   };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
     API.getBooks(this.state.search)
-      .then((res) => {
-        if (res.data.status === "error") {
-          throw new Error(res.data.message);
-        }
-        this.setState({ results: res.data.message, error: "" });
+    .then((res) =>
+      this.setState({
+        books: res.data.items.map((bookData) => this.createBook(bookData)),
       })
-      .catch((err) => this.setState({ error: err.message }));
+    )
+    .catch((err) => console.error(err));
   };
+  
   render() {
     return (
       <div>
