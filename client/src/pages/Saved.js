@@ -16,7 +16,7 @@ class Saved extends Component {
     render() {
         return (
             <div>
-                <h2>Saved books</h2>
+                <h2 className="text-center">Saved books</h2>
                 <Results books={this.state.savedBooks} />
             </div>
         )

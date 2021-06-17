@@ -47,7 +47,7 @@ handleFormSubmit = event => {
     return (
       <div>
         <h1 className="text-center">Search Books!</h1>
-
+        <p className="text-center">Use the search bar to look for various book titles.  Click view to find out more about the book.  Click save to add that book to your list of unread books.</p>
         <SearchForm
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
