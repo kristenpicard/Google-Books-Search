@@ -5,50 +5,43 @@ import API from "../utils/API";
 
 class Search extends Component {
   state = {
-    search: "",
-    books: [],
-  };
+    result: "",
+    books: []
+};
 
-  // When the component mounts, get a list of all available base books and update this.state.books
-  componentDidMount(query) {
-    API.getBooks(query)
-      .then((res) =>
-        this.setState({
-          books: res.data.items.map((bookData) => this.createBook(bookData)),
-        })
-      )
-      .catch((err) => console.error(err));
-  }
+componentDidMount() {
+    this.searchBook();
+}
 
-  createBook = (bookData) => {
+makeBook = bookData => {
     return {
-      _id: bookData.id,
-      title: bookData.volumeInfo.title,
-      authors: bookData.volumeInfo.authors,
-      description: bookData.volumeInfo.description,
-      image: bookData.volumeInfo.imageLinks.thumbnail,
-      link: bookData.volumeInfo.previewLink,
-    };
-  };
+        _id: bookData.id,
+        title: bookData.volumeInfo.title,
+        authors: bookData.volumeInfo.authors,
+        description: bookData.volumeInfo.description,
+        image: bookData.volumeInfo.imageLinks.thumbnail,
+        link: bookData.volumeInfo.previewLink
+    }
+}
 
-  handleInputChange = (event) => {
+searchBook = query => {
+    API.getBook(query)
+        .then(res => this.setState({ books: res.data.items.map(bookData => this.makeBook(bookData)) }))
+        .catch(err => console.error(err));
+};
+
+handleInputChange = event => {
     const name = event.target.name;
     const value = event.target.value;
     this.setState({
-      [name]: value,
+        [name]: value
     });
-  };
+};
 
-  handleFormSubmit = (event) => {
+handleFormSubmit = event => {
     event.preventDefault();
-    API.getBooks(this.state.search)
-      .then((res) =>
-        this.setState({
-          books: res.data.items.map((bookData) => this.createBook(bookData)),
-        })
-      )
-      .catch((err) => console.error(err));
-  };
+    this.searchBook(this.state.search);
+};
 
   render() {
     return (
@@ -60,7 +53,9 @@ class Search extends Component {
           handleInputChange={this.handleInputChange}
           search={this.state.search}
         />
-        <Results books={this.state.books} />
+        <Results
+          books={this.state.books}
+        ></Results>
       </div>
     );
   }
