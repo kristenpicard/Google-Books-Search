@@ -26,9 +26,12 @@ Click this link to take you to the deployed app:
 Sole Author: Kristen Picard
 https://github.com/kristenpicard
 
-## Demo
+## Screenshots
 
-![Demo](assets/1.gif)
+Here is the home page:
+![Screenshot1](assets/1.png)
+This shows books displayed when searching the word, "test":
+![Screenshot1](assets/2.png)
 
 ## Questions
 
