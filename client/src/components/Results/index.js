@@ -68,7 +68,7 @@ class Results extends Component {
                         </a>
                         <button
                           onClick={() => this.onSave(result)}
-                          className="btn badge-pill btn-dark  mt-3 ml-3"
+                          className="btn badge-pill btn-dark mt-3"
                         >
                           {this.state.savedBooks
                             .map((book) => book._id)
