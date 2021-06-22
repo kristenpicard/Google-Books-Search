@@ -6,7 +6,7 @@ In this project I have created a React-based Google Books Search app. I created 
 
 ## Application Depoloyment
 
-Click this link to take you to the deployed app:
+Click this link to take you to the deployed app: https://radiant-reaches-21235.herokuapp.com/
 
 ## Table of Contents
 
