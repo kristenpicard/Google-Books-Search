@@ -13,32 +13,32 @@ class Results extends Component {
     // this.savedBook();
   }
 
-  onSave = (book) => {
-    if (this.state.savedBooks.map((book) => book._id).includes(book._id)) {
-      API.deleteBook(book._id)
-        .then((deletedBook) =>
-          this.setState({
-            savedBooks: this.state.savedBooks.filter(
-              (book) => book._id !== deletedBook._id
-            ),
-          })
-        )
-        .catch((err) => console.error(err));
-    } else {
-      API.saveBook(book)
-        .then((savedBook) =>
-          this.setState({
-            savedBooks: this.state.savedBooks.concat([savedBook]),
-          })
-        )
-        .catch((err) => console.error(err));
-    }
-  };
+  // onSave = (book) => {
+  //   if (this.state.savedBooks.map((book) => book._id).includes(book._id)) {
+  //     API.deleteBook(book._id)
+  //       .then((deletedBook) =>
+  //         this.setState({
+  //           savedBooks: this.state.savedBooks.filter(
+  //             (book) => book._id !== deletedBook._id
+  //           ),
+  //         })
+  //       )
+  //       .catch((err) => console.error(err));
+  //   } else {
+  //     API.saveBook(book)
+  //       .then((savedBook) =>
+  //         this.setState({
+  //           savedBooks: this.state.savedBooks.concat([savedBook]),
+  //         })
+  //       )
+  //       .catch((err) => console.error(err));
+  //   }
+  // };
 
   render() {
     return (
       <div>
-        {this.props.books.length == 0 ? (
+        {this.props.savedBooks.length == 0 ? (
           <h1 className="text-center">No Results to Display</h1>
         ) : (
           <div>
